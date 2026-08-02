@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sonu Electronics | Best Electrical & Dish Store in Jadia Bazar, Supaul, Bihar</title>
+  
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Sonu Electronics (Prop. Tanveer Alam) - Premier electrical goods store in Thana Road, Jadia Bazar, Supaul, Bihar. High quality Fans, Wires, Switch Boards, LED Bulbs, Dish DTH, Inverters & accessories at wholesale & retail prices. Call 9631985165 or 9708773151.">
+  <meta name="keywords" content="Sonu Electronics, Tanveer Alam, Jadia Bazar electronics, Supaul Bihar electrical shop, Fan, Copper Wire, Switch Board, LED Bulb, Dish DTH, Polycab, Havells, Crompton">
+  
+  <!-- FontAwesome Icons & Google Fonts -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="top-bar">
+    <div class="container top-bar-content">
+      <div class="top-bar-item">
+        <i class="fas fa-store text-gold"></i>
+        <span><strong>Sonu Electronics</strong> — Wholesale & Retail Store | Prop. <strong>Tanveer Alam</strong></span>
+      </div>
+      <div class="top-bar-item">
+        <i class="fas fa-map-marker-alt text-gold"></i>
+        <span>Thana Road, Jadia Bazar, Supaul, Bihar</span>
+      </div>
+      <div class="top-bar-item">
+        <i class="fas fa-phone-alt text-gold"></i>
+        <a href="tel:9631985165" style="color: #fff; text-decoration: none; font-weight: 700;">+91 9631985165</a>
+        <span style="opacity: 0.6; margin: 0 4px;">|</span>
+        <a href="tel:9708773151" style="color: #fff; text-decoration: none; font-weight: 700;">9708773151</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Navigation Header -->
+  <header class="header" id="main-header">
+    <div class="container navbar">
+      <a href="#" class="brand-logo" id="brand-logo-link">
+        <div class="brand-icon">
+          <i class="fas fa-bolt"></i>
+        </div>
+        <div class="brand-text">
+          <h1>SONU <span class="text-gold">ELECTRONICS</span></h1>
+          <p>Prop. Tanveer Alam</p>
+        </div>
+      </a>
+
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#hero" class="nav-link active" id="nav-home">Home</a></li>
+        <li><a href="#products" class="nav-link" id="nav-products">Products</a></li>
+        <li><a href="#proprietor" class="nav-link" id="nav-about">About Us</a></li>
+        <li><a href="#contact" class="nav-link" id="nav-contact">Contact & Location</a></li>
+      </ul>
+
+      <div class="header-actions">
+        <button class="cart-btn-trigger" onclick="openAddProductModal()" id="header-admin-btn" style="background: rgba(251, 191, 36, 0.15); border-color: var(--accent-gold); color: var(--accent-gold);" title="Proprietor Only - Add Product">
+          <i class="fas fa-plus-circle"></i> + Add Product
+        </button>
+
+        <button class="cart-btn-trigger" id="cart-trigger" title="View Order Quote">
+          <i class="fas fa-shopping-bag text-gold"></i>
+          <span>Quote List</span>
+          <span class="cart-badge" id="cart-badge">0</span>
+        </button>
+
+        <a href="tel:9631985165" class="btn btn-primary" id="header-call-btn">
+          <i class="fas fa-phone"></i> Call Now
+        </a>
+
+        <button class="mobile-menu-toggle" id="mobile-toggle" aria-label="Toggle menu">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero" id="hero">
+    <div class="container hero-grid">
+      <div class="hero-content">
+        <div class="hero-tag">
+          <i class="fas fa-check-circle"></i> Trusted Electrical Store in Supaul District
+        </div>
+        <h1 class="hero-title">
+          Top Quality <span class="text-gradient">Electrical & Electronics</span> Products in Jadia Bazar
+        </h1>
+        <p class="hero-desc">
+          Welcome to <strong>Sonu Electronics</strong> (Prop. Tanveer Alam). Your one-stop shop for high-speed ceiling fans, 100% copper wires, modular switchboards, bright LED lighting, Dish DTH setup boxes, inverters, and accessories at unbeatable wholesale & retail prices.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#products" class="btn btn-gold" id="hero-browse-btn">
+            <i class="fas fa-search"></i> Explore Catalog
+          </a>
+          <a href="https://wa.me/919631985165?text=Hello%20Tanveer%20Alam,%20I%20want%20to%20inquire%20about%20electrical%20products%20at%20Sonu%20Electronics" target="_blank" class="btn btn-whatsapp" id="hero-wa-btn">
+            <i class="fab fa-whatsapp"></i> Instant WhatsApp Order
+          </a>
+          <a href="tel:9631985165" class="btn btn-outline" id="hero-phone-btn">
+            <i class="fas fa-phone-alt"></i> 9631985165
+          </a>
+        </div>
+
+        <div class="hero-stats">
+          <div class="stat-item">
+            <h3>100%</h3>
+            <p>Genuine Brands</p>
+          </div>
+          <div class="stat-item">
+            <h3>Best</h3>
+            <p>Wholesale Rates</p>
+          </div>
+          <div class="stat-item">
+            <h3>Fast</h3>
+            <p>Local Fitting & Support</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="hero-card-stack">
+          <img src="images/hero.png" alt="Sonu Electronics Store Showcase" class="hero-img" id="hero-banner-img">
+          <div class="hero-badge-floating">
+            <div class="proprietor-info">
+              <h4>Sonu Electronics</h4>
+              <p><i class="fas fa-user-shield"></i> Prop. Tanveer Alam</p>
+            </div>
+            <a href="#contact" class="btn btn-primary" style="padding: 0.4rem 0.9rem; font-size: 0.85rem;">
+              Visit Store <i class="fas fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Feature Highlights -->
+  <section class="features-section">
+    <div class="container features-grid">
+      <div class="feature-card">
+        <i class="fas fa-fan feature-icon"></i>
+        <div class="feature-text">
+          <h4>Ceiling & Table Fans</h4>
+          <p>High-speed copper motor fans from Crompton, Orient & Bajaj.</p>
+        </div>
+      </div>
+      <div class="feature-card">
+        <i class="fas fa-plug feature-icon"></i>
+        <div class="feature-text">
+          <h4>Wires & Switches</h4>
+          <p>Fire-retardant 100% copper wires & modular switch plates.</p>
+        </div>
+      </div>
+      <div class="feature-card">
+        <i class="fas fa-lightbulb feature-icon"></i>
+        <div class="feature-text">
+          <h4>Bright LED Bulbs</h4>
+          <p>Energy-saving LED lights, flood lights & ceiling panels.</p>
+        </div>
+      </div>
+      <div class="feature-card">
+        <i class="fas fa-satellite-dish feature-icon"></i>
+        <div class="feature-text">
+          <h4>Dish DTH Systems</h4>
+          <p>Tata Play, Dish TV & Airtel HD setup box connections.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Authorized Top Brands Showcase Section -->
+  <section class="brands-showcase-section">
+    <div class="container">
+      <div style="text-align: center; margin-bottom: 1rem;">
+        <span class="section-tag"><i class="fas fa-certificate"></i> 100% Original Authorized Stock</span>
+        <h3 style="font-size: 1.8rem; font-weight: 800;">Available Brands at Sonu Electronics</h3>
+      </div>
+      <div class="brands-grid">
+        <div class="brand-card-featured" title="Goldmedal Switches & Electricals">
+          <div class="brand-logo-text brand-goldmedal">Goldmedal<sup>®</sup></div>
+          <span style="font-size: 0.75rem; color: #555; margin-top: 4px; font-weight: 600;">Switches & Automation</span>
+        </div>
+
+        <div class="brand-card-featured" title="RR Signature Wires & Cables">
+          <div class="brand-logo-text brand-rr">RR <span>SIGNATURE WIRES & CABLES</span></div>
+          <span style="font-size: 0.75rem; color: #555; margin-top: 4px; font-weight: 600;">HTFF Copper Wires</span>
+        </div>
+
+        <div class="brand-card-featured" title="Luminous Power Backups & Batteries">
+          <div class="brand-logo-text brand-luminous">LUMINOUS</div>
+          <span style="font-size: 0.75rem; color: #555; margin-top: 4px; font-weight: 600;">Inverters & Batteries</span>
+        </div>
+
+        <div class="brand-card-featured" title="Anchor Electrical Fittings">
+          <div class="brand-logo-text brand-anchor"><i class="fas fa-anchor"></i> ANCHOR</div>
+          <span style="font-size: 0.75rem; color: #555; margin-top: 4px; font-weight: 600;">Modular Switches & Sockets</span>
+        </div>
+
+        <div class="brand-card-featured" title="Havells Electrical Products">
+          <div class="brand-logo-text brand-havells">HAVELLS</div>
+          <span style="font-size: 0.75rem; color: #555; margin-top: 4px; font-weight: 600;">Wires, Fans & Lights</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Products Catalog Section -->
+  <section class="products-section" id="products">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Explore Store Catalog</span>
+        <h2 class="section-title">Available Products at Sonu Electronics</h2>
+        <p class="section-desc">Select products, check specs, and build your WhatsApp quote request in seconds!</p>
+        <div style="margin-top: 1.2rem;">
+          <button class="btn btn-gold" onclick="openAddProductModal()" id="add-product-modal-btn" style="padding: 0.85rem 1.8rem; font-size: 1.05rem; box-shadow: 0 0 20px rgba(251, 191, 36, 0.4);" title="Proprietor Admin Access">
+            <i class="fas fa-lock"></i> <strong>+ Add New Product to Catalog</strong> (Admin Only)
+          </button>
+        </div>
+      </div>
+
+      <div class="product-controls">
+        <div class="search-bar-wrapper">
+          <i class="fas fa-search search-icon"></i>
+          <input type="text" id="search-input" class="search-input" placeholder="Search fans, wires, switch boards, LED bulbs, dish DTH...">
+        </div>
+
+        <div class="category-tabs" id="category-tabs">
+          <button class="cat-btn active" data-category="all" id="cat-all"><i class="fas fa-th-large"></i> All Items</button>
+          <button class="cat-btn" data-category="fans" id="cat-fans"><i class="fas fa-fan"></i> Fans</button>
+          <button class="cat-btn" data-category="wires" id="cat-wires"><i class="fas fa-ring"></i> Wires & Cables</button>
+          <button class="cat-btn" data-category="switches" id="cat-switches"><i class="fas fa-toggle-on"></i> Switch & Boards</button>
+          <button class="cat-btn" data-category="bulbs" id="cat-bulbs"><i class="fas fa-lightbulb"></i> LED Bulbs</button>
+          <button class="cat-btn" data-category="dish" id="cat-dish"><i class="fas fa-satellite-dish"></i> Dish & DTH</button>
+          <button class="cat-btn" data-category="inverters" id="cat-inverters"><i class="fas fa-car-battery"></i> Inverters & Battery</button>
+          <button class="cat-btn" data-category="tools" id="cat-tools"><i class="fas fa-tools"></i> Tools</button>
+        </div>
+      </div>
+
+      <div class="products-grid" id="products-container">
+        <!-- Dynamically rendered by app.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Proprietor Trust Section -->
+  <section class="proprietor-section" id="proprietor">
+    <div class="container">
+      <div class="proprietor-card">
+        <div class="proprietor-text">
+          <span class="proprietor-badge"><i class="fas fa-shield-alt"></i> Verified Local Store</span>
+          <h2>Your Trusted Electrical Partner in Jadia Bazar, Supaul</h2>
+          <p>
+            Managed by <strong>Tanveer Alam</strong>, Sonu Electronics has built an outstanding reputation across Supaul district for providing genuine electrical items, competitive wholesale pricing, and dedicated customer support.
+          </p>
+          <p>
+            Whether you are building a new house, renovating your office, or need instant satellite TV setup, we supply premium quality materials that ensure safety and long-lasting durability.
+          </p>
+
+          <div style="margin-top: 1rem;">
+            <strong style="color: var(--text-main); font-size: 0.9rem;">Available Top Brands:</strong>
+            <div class="brand-chips">
+              <span class="brand-chip" style="border-color: #d90429; color: #ff6b6b;"><i class="fas fa-star"></i> Goldmedal</span>
+              <span class="brand-chip" style="border-color: #e63946; color: #ff6b6b;"><i class="fas fa-star"></i> RR Signature Wires</span>
+              <span class="brand-chip" style="border-color: #38bdf8; color: #38bdf8;"><i class="fas fa-star"></i> Luminous</span>
+              <span class="brand-chip" style="border-color: #fbbf24; color: #fbbf24;"><i class="fas fa-star"></i> Anchor</span>
+              <span class="brand-chip" style="border-color: #e63946; color: #ff6b6b;"><i class="fas fa-star"></i> Havells</span>
+              <span class="brand-chip">Polycab</span>
+              <span class="brand-chip">Crompton</span>
+              <span class="brand-chip">Syska</span>
+              <span class="brand-chip">Tata Play</span>
+              <span class="brand-chip">Dish TV</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="proprietor-contact-box">
+          <div class="contact-person">
+            <div class="person-avatar">
+              <i class="fas fa-user-tie"></i>
+            </div>
+            <div class="person-info">
+              <h3>Tanveer Alam</h3>
+              <p>Proprietor, Sonu Electronics</p>
+            </div>
+          </div>
+
+          <div class="phone-list">
+            <div class="phone-item">
+              <div>
+                <div style="font-size: 0.75rem; color: var(--text-muted);">Primary Contact</div>
+                <div class="phone-number">+91 9631985165</div>
+              </div>
+              <a href="tel:9631985165" class="btn btn-primary" style="padding: 0.4rem 0.8rem; font-size: 0.85rem;">
+                <i class="fas fa-phone"></i> Call
+              </a>
+            </div>
+
+            <div class="phone-item">
+              <div>
+                <div style="font-size: 0.75rem; color: var(--text-muted);">Secondary Contact</div>
+                <div class="phone-number">+91 9708773151</div>
+              </div>
+              <a href="tel:9708773151" class="btn btn-primary" style="padding: 0.4rem 0.8rem; font-size: 0.85rem;">
+                <i class="fas fa-phone"></i> Call
+              </a>
+            </div>
+
+            <div style="margin-top: 0.5rem; text-align: center;">
+              <a href="https://wa.me/919631985165?text=Hello%20Tanveer%20Alam,%20I%20have%20an%20electrical%20inquiry" target="_blank" class="btn btn-whatsapp" style="width: 100%;">
+                <i class="fab fa-whatsapp"></i> Chat with Tanveer Alam on WhatsApp
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact & Map Section -->
+  <section class="contact-section" id="contact">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Visit Our Store</span>
+        <h2 class="section-title">Store Location & Contact Information</h2>
+        <p class="section-desc">We are conveniently located at Thana Road in Jadia Bazar, Supaul, Bihar.</p>
+      </div>
+
+      <div class="contact-grid">
+        <div class="contact-info-card">
+          <div class="info-row">
+            <div class="info-icon">
+              <i class="fas fa-map-marked-alt"></i>
+            </div>
+            <div class="info-details">
+              <h4>Store Address</h4>
+              <p><strong>Sonu Electronics</strong><br>Thana Road, Jadia Bazar,<br>Supaul, Bihar - 852214</p>
+            </div>
+          </div>
+
+          <div class="info-row">
+            <div class="info-icon">
+              <i class="fas fa-user"></i>
+            </div>
+            <div class="info-details">
+              <h4>Proprietor</h4>
+              <p><strong>Tanveer Alam</strong></p>
+            </div>
+          </div>
+
+          <div class="info-row">
+            <div class="info-icon">
+              <i class="fas fa-phone-volume"></i>
+            </div>
+            <div class="info-details">
+              <h4>Phone Numbers</h4>
+              <p>
+                <a href="tel:9631985165" style="color: var(--primary); text-decoration: none; font-weight: 700;">+91 9631985165</a><br>
+                <a href="tel:9708773151" style="color: var(--primary); text-decoration: none; font-weight: 700;">+91 9708773151</a>
+              </p>
+            </div>
+          </div>
+
+          <div class="info-row">
+            <div class="info-icon">
+              <i class="fas fa-clock"></i>
+            </div>
+            <div class="info-details">
+              <h4>Store Working Hours</h4>
+              <p>Monday - Sunday: 8:00 AM to 8:00 PM</p>
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 1rem; margin-top: 1rem;">
+            <a href="tel:9631985165" class="btn btn-gold" style="flex: 1;" id="contact-call-btn">
+              <i class="fas fa-phone"></i> Call Store Now
+            </a>
+            <a href="https://wa.me/919631985165?text=Hi,%20I%20want%20to%20visit%20Sonu%20Electronics%20store%20in%20Jadia%20Bazar" target="_blank" class="btn btn-whatsapp" style="flex: 1;" id="contact-wa-btn">
+              <i class="fab fa-whatsapp"></i> WhatsApp Us
+            </a>
+          </div>
+        </div>
+
+        <div class="map-card" style="overflow: hidden; border-radius: var(--radius-md); border: 1px solid var(--border-light); background: rgba(15, 23, 42, 0.95);">
+          <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3587.6970725531985!2d86.98104877540498!3d26.096565277145708!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39efb988eb7cbb07%3A0xa95bf3122c54ca26!2sSonu%20Electronics!5e0!3m2!1sen!2sin!4v1722585000000!5m2!1sen!2sin" 
+            width="100%" 
+            height="340" 
+            style="border:0; display: block;" 
+            allowfullscreen="" 
+            loading="lazy" 
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+          <div style="padding: 1.2rem; background: rgba(15, 23, 42, 0.95); display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap;">
+            <div>
+              <strong style="color: #fff; font-size: 0.95rem; display: block;"><i class="fas fa-map-marker-alt text-gold"></i> Sonu Electronics</strong>
+              <span style="color: var(--text-muted); font-size: 0.85rem;">Thana Road, Jadia Bazar, Supaul, Bihar</span>
+            </div>
+            <a href="https://maps.app.goo.gl/epeajm8Kb9FqiSiF9" target="_blank" class="btn btn-gold" id="directions-btn" style="padding: 0.6rem 1.2rem; font-size: 0.85rem;">
+              <i class="fas fa-directions"></i> Open Google Maps
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cart / Quote Drawer Slide-out -->
+  <div class="cart-drawer-overlay" id="cart-overlay"></div>
+  <div class="cart-drawer" id="cart-drawer">
+    <div class="cart-header">
+      <h3><i class="fas fa-clipboard-list text-gold"></i> Your Order Quote List</h3>
+      <button class="close-btn" id="cart-close">&times;</button>
+    </div>
+
+    <div class="cart-body" id="cart-items-container">
+      <!-- Cart Items populated by app.js -->
+    </div>
+
+    <div class="cart-footer">
+      <div class="cart-total-row">
+        <span>Estimated Total Quote:</span>
+        <span id="cart-total" class="text-gold">₹0</span>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 0.8rem;">
+        <button class="btn btn-whatsapp" onclick="sendWhatsAppOrder('9631985165')" id="cart-wa-order-btn-1">
+          <i class="fab fa-whatsapp"></i> Send Order to 9631985165
+        </button>
+        <button class="btn btn-whatsapp" style="background: linear-gradient(135deg, #15803d 0%, #166534 100%);" onclick="sendWhatsAppOrder('9708773151')" id="cart-wa-order-btn-2">
+          <i class="fab fa-whatsapp"></i> Send Order to 9708773151
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Quick View Modal -->
+  <div class="modal-overlay" id="modal-overlay">
+    <div class="modal-card" id="modal-content">
+      <!-- Modal Content populated dynamically -->
+    </div>
+  </div>
+
+  <!-- Floating Quick Contact Buttons -->
+  <div class="floating-widget">
+    <a href="https://wa.me/919631985165?text=Hello%20Sonu%20Electronics%20(Tanveer%20Alam)" target="_blank" class="float-btn float-whatsapp" title="WhatsApp Us" id="float-wa-btn">
+      <i class="fab fa-whatsapp"></i>
+    </a>
+    <a href="tel:9631985165" class="float-btn float-call" title="Call Sonu Electronics" id="float-call-btn">
+      <i class="fas fa-phone-alt"></i>
+    </a>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-about">
+          <div class="brand-logo" style="margin-bottom: 1rem;">
+            <div class="brand-icon">
+              <i class="fas fa-bolt"></i>
+            </div>
+            <div class="brand-text">
+              <h1>SONU <span class="text-gold">ELECTRONICS</span></h1>
+              <p>Prop. Tanveer Alam</p>
+            </div>
+          </div>
+          <p>
+            Providing high quality electrical fans, house wiring, modular switchboards, LED lamps, Dish DTH systems, and inverters in Thana Road, Jadia Bazar, Supaul, Bihar.
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#products">Products Catalog</a></li>
+            <li><a href="#proprietor">About Proprietor</a></li>
+            <li><a href="#contact">Store Location</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Product Categories</h4>
+          <ul class="footer-links">
+            <li><a href="#products">Ceiling & Table Fans</a></li>
+            <li><a href="#products">Copper House Wires</a></li>
+            <li><a href="#products">Modular Switch Boards</a></li>
+            <li><a href="#products">LED Bulbs & Lights</a></li>
+            <li><a href="#products">Dish DTH Connections</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Store Contacts</h4>
+          <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 0.8rem;">
+            <i class="fas fa-user-tie text-gold"></i> <strong>Prop. Tanveer Alam</strong>
+          </p>
+          <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 0.5rem;">
+            <i class="fas fa-phone-alt text-gold"></i> <a href="tel:9631985165" style="color: #fff; text-decoration: none;">+91 9631985165</a>
+          </p>
+          <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 0.8rem;">
+            <i class="fas fa-phone-alt text-gold"></i> <a href="tel:9708773151" style="color: #fff; text-decoration: none;">+91 9708773151</a>
+          </p>
+          <p style="color: var(--text-muted); font-size: 0.85rem;">
+            <i class="fas fa-map-marker-alt text-gold"></i> Thana Road, Jadia Bazar, Supaul, Bihar
+          </p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 Sonu Electronics (Prop. Tanveer Alam). All Rights Reserved. Designed for Maximum Customer Conversion.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
