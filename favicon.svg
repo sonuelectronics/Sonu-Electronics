@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#070c1a"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="45%" stop-color="#fbbf24"/>
+      <stop offset="100%" stop-color="#f59e0b"/>
+    </linearGradient>
+  </defs>
+  <!-- Background Badge -->
+  <rect width="512" height="512" rx="128" fill="url(#bgGrad)"/>
+  <rect width="484" height="484" x="14" y="14" rx="114" fill="none" stroke="url(#goldGrad)" stroke-width="14" stroke-opacity="0.85"/>
+  
+  <!-- Stylized SE Monogram -->
+  <text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" font-family="'Outfit', 'Inter', 'Segoe UI', 'Arial Black', sans-serif" font-weight="900" font-size="250" fill="url(#goldGrad)" letter-spacing="-10">SE</text>
+</svg>

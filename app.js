@@ -1,5 +1,31 @@
 // Sonu Electronics - Interactive Application Logic
 
+// Firebase Configuration for Multi-Device Realtime Cloud Sync
+const firebaseConfig = {
+  apiKey: "AIzaSyAVb2DW0-B6Z_K0PzFG2DIW8O_Pned0mBU",
+  authDomain: "sonu-electronics.firebaseapp.com",
+  databaseURL: "https://sonu-electronics-default-rtdb.firebaseio.com",
+  projectId: "sonu-electronics",
+  storageBucket: "sonu-electronics.firebasestorage.app",
+  messagingSenderId: "1087980044642",
+  appId: "1:1087980044642:web:87c298de56de7cdc306c3b",
+  measurementId: "G-81H35K5XR3"
+};
+
+let firebaseDb = null;
+let firestoreDb = null;
+
+if (typeof firebase !== "undefined") {
+  try {
+    firebase.initializeApp(firebaseConfig);
+    // Only attempt DB if initialized
+    try { if (firebase.database) firebaseDb = firebase.database(); } catch(e) {}
+    try { if (firebase.firestore) firestoreDb = firebase.firestore(); } catch(e) {}
+  } catch (err) {
+    // Graceful offline fallback
+  }
+}
+
 const PRODUCTS = [
   {
     id: 1,
@@ -202,7 +228,7 @@ function renderProducts() {
             <button class="btn-icon-cart" onclick="quickView(${product.id})" title="View Details">
               <i class="fas fa-eye"></i>
             </button>
-            <button class="btn-icon-cart" onclick="addToCart(${product.id})" title="Add to Order Quote">
+            <button class="btn-icon-cart" onclick="addToCart(${product.id})" title="Add to Cart">
               <i class="fas fa-cart-plus"></i> Add
             </button>
           </div>
@@ -367,7 +393,7 @@ function sendWhatsAppOrder(phoneNum = "9631985165") {
     text += `${index + 1}. *${item.name}*\n   Qty: ${item.qty} | Est. Price: ₹${itemTotal.toLocaleString("en-IN")}\n`;
   });
 
-  text += `\n*Estimated Total Quote:* ₹${total.toLocaleString("en-IN")}\n\nDelivery Address / Customer Inquiry:\nThana Road, Jadia Bazar, Supaul, Bihar region.\n\nPlease confirm availability and final wholesale/retail pricing. Thank you!`;
+  text += `\n*Estimated Total:* ₹${total.toLocaleString("en-IN")}\n\nDelivery Address / Customer Inquiry:\nThana Road, Jadia Bazar, Supaul, Bihar region.\n\nPlease confirm availability and final wholesale/retail pricing. Thank you!`;
 
   const encoded = encodeURIComponent(text);
   const whatsappUrl = `https://wa.me/91${phoneNum}?text=${encoded}`;
@@ -486,6 +512,14 @@ function deleteProduct(productId) {
       localStorage.setItem("sonu_deleted_ids", JSON.stringify(deletedIds));
     } catch(e) { console.error(e); }
 
+    // Sync deletion across all customer devices via Firebase
+    if (firebaseDb) {
+      try { firebaseDb.ref("products/" + productId).remove(); } catch(e) { console.error(e); }
+    }
+    if (firestoreDb) {
+      try { firestoreDb.collection("products").doc(String(productId)).delete(); } catch(e) { console.error(e); }
+    }
+
     closeModal();
     renderProducts();
     showToast(`Deleted "${deletedName}" from catalog!`);
@@ -501,7 +535,7 @@ function closeModal() {
   document.getElementById("modal-overlay")?.classList.remove("open");
 }
 
-// Load saved custom products & remove deleted items from localStorage
+// Load saved custom products & remove deleted items from localStorage + Realtime Firebase Cloud Sync
 (function loadCustomProducts() {
   try {
     const deletedIds = JSON.parse(localStorage.getItem("sonu_deleted_ids") || "[]");
@@ -523,6 +557,57 @@ function closeModal() {
       });
     }
   } catch(e) { console.error(e); }
+
+  // Firebase Realtime Cloud Listener (Syncs all devices live!)
+  if (firebaseDb) {
+    try {
+      firebaseDb.ref("products").on("value", (snapshot) => {
+        const val = snapshot.val();
+        if (val) {
+          Object.values(val).forEach(remoteProduct => {
+            if (!PRODUCTS.some(p => p.id === remoteProduct.id)) {
+              PRODUCTS.unshift(remoteProduct);
+            } else {
+              const idx = PRODUCTS.findIndex(p => p.id === remoteProduct.id);
+              if (idx !== -1) PRODUCTS[idx] = remoteProduct;
+            }
+          });
+          renderProducts();
+        }
+      }, (err) => {
+        // Silently ignore if RTDB is not enabled yet in console
+      });
+    } catch(err) {}
+  }
+
+  // Firebase Firestore Listener (Syncs all devices live!)
+  if (firestoreDb) {
+    try {
+      firestoreDb.collection("products").onSnapshot((snapshot) => {
+        snapshot.docChanges().forEach((change) => {
+          const itemData = change.doc.data();
+          if (change.type === "added" || change.type === "modified") {
+            if (!PRODUCTS.some(p => p.id === itemData.id)) {
+              PRODUCTS.unshift(itemData);
+            } else {
+              const idx = PRODUCTS.findIndex(p => p.id === itemData.id);
+              if (idx !== -1) PRODUCTS[idx] = itemData;
+            }
+            renderProducts();
+          }
+          if (change.type === "removed") {
+            const idx = PRODUCTS.findIndex(p => p.id === itemData.id);
+            if (idx !== -1) {
+              PRODUCTS.splice(idx, 1);
+              renderProducts();
+            }
+          }
+        });
+      }, (err) => {
+        // Silently ignore if Firestore API is disabled in console
+      });
+    } catch(err) {}
+  }
 })();
 
 // Admin Security PIN (Default: 9631)
@@ -742,10 +827,18 @@ function handleNewProductSubmit(e) {
     localStorage.setItem("sonu_custom_products", JSON.stringify(saved));
   } catch(err) { console.error(err); }
 
+  // Sync new product across all customer devices live via Firebase
+  if (firebaseDb) {
+    try { firebaseDb.ref("products/" + newProduct.id).set(newProduct); } catch(e) { console.error(e); }
+  }
+  if (firestoreDb) {
+    try { firestoreDb.collection("products").doc(String(newProduct.id)).set(newProduct); } catch(e) { console.error(e); }
+  }
+
   uploadedBase64Image = ""; // Reset
   closeModal();
   renderProducts();
-  showToast(`Successfully published "${name}" to catalog!`);
+  showToast(`Successfully published "${name}" to all customer devices!`);
 }
 
 // Toast Notifications

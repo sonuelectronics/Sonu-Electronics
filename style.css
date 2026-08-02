@@ -1238,6 +1238,9 @@ body {
 }
 
 @media (max-width: 768px) {
+  .container {
+    padding: 0 1.25rem;
+  }
   .top-bar-content {
     justify-content: center;
     text-align: center;
@@ -1247,11 +1250,37 @@ body {
   .top-bar-info {
     font-size: 0.75rem;
   }
+  .navbar {
+    padding: 0.75rem 0;
+  }
+  .brand-logo {
+    gap: 0.5rem;
+    flex-shrink: 0;
+  }
+  .brand-icon {
+    width: 36px;
+    height: 36px;
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+  .brand-text h1 {
+    font-size: 1.05rem;
+    font-weight: 800;
+    white-space: nowrap;
+  }
+  .brand-text p {
+    font-size: 0.62rem;
+  }
   .nav-links {
     display: none;
   }
   .mobile-menu-toggle {
     display: block;
+    font-size: 1.2rem;
+    padding: 0.3rem 0.4rem;
+  }
+  #header-call-btn {
+    display: none;
   }
   .footer-grid {
     grid-template-columns: 1fr;
@@ -1287,7 +1316,30 @@ body {
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 550px) {
+  .container {
+    padding: 0 1.25rem;
+  }
+  .header-actions {
+    gap: 0.35rem;
+    flex-shrink: 0;
+  }
+  #header-admin-btn {
+    padding: 0.35rem 0.55rem;
+    font-size: 0.75rem;
+    white-space: nowrap;
+  }
+  #header-admin-btn span.btn-text-full {
+    display: none;
+  }
+  .cart-btn-trigger {
+    padding: 0.35rem 0.55rem;
+    font-size: 0.75rem;
+    gap: 0.25rem;
+  }
+  #cart-trigger span:not(.cart-badge) {
+    display: none;
+  }
   .hero-buttons {
     flex-direction: column;
     width: 100%;
@@ -1296,24 +1348,11 @@ body {
     width: 100%;
   }
   .brand-logo .brand-text h1 {
-    font-size: 1.05rem;
+    font-size: 0.98rem;
+    letter-spacing: -0.2px;
   }
   .brand-logo .brand-text p {
-    font-size: 0.65rem;
-  }
-  .header-actions {
-    gap: 0.35rem;
-  }
-  #header-admin-btn {
-    padding: 0.35rem 0.55rem;
-    font-size: 0.72rem;
-  }
-  .btn-cart {
-    padding: 0.35rem 0.55rem;
-    font-size: 0.75rem;
-  }
-  .btn-cart-call {
-    display: none;
+    font-size: 0.58rem;
   }
   .products-grid {
     grid-template-columns: 1fr;
@@ -1324,5 +1363,14 @@ body {
     padding: 1.5rem 1rem;
     font-size: 0.8rem;
     line-height: 1.5;
+  }
+}
+
+@media (max-width: 380px) {
+  .brand-logo .brand-text h1 {
+    font-size: 0.95rem;
+  }
+  .brand-logo .brand-text p {
+    display: none;
   }
 }
