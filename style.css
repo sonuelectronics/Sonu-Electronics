@@ -290,16 +290,18 @@ body {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(0, 0, 0, 0.45);
+  background: transparent;
   z-index: 998;
   opacity: 0;
   visibility: hidden;
-  transition: all 0.3s ease;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
 }
 
 .mobile-nav-backdrop.open {
   opacity: 1;
   visibility: visible;
+  pointer-events: auto;
 }
 
 .mobile-menu-toggle {
@@ -1269,7 +1271,7 @@ body {
 
 @media (max-width: 768px) {
   .container {
-    padding: 0 1rem;
+    padding: 0 1.25rem;
   }
 
   /* Top Bar Announcement */
@@ -1292,7 +1294,7 @@ body {
     margin-top: 0.25rem;
   }
   .navbar {
-    padding: 0.95rem 0;
+    padding: 0.95rem 0.5rem;
     position: relative;
   }
   .brand-logo {
@@ -1515,10 +1517,10 @@ body {
 
 @media (max-width: 550px) {
   .container {
-    padding: 0 0.85rem;
+    padding: 0 1.15rem;
   }
   .navbar {
-    padding: 0.85rem 0;
+    padding: 0.85rem 0.4rem;
   }
   .brand-logo {
     gap: 0.55rem;
@@ -1570,10 +1572,10 @@ body {
 
 @media (max-width: 400px) {
   .container {
-    padding: 0 0.75rem;
+    padding: 0 1rem;
   }
   .navbar {
-    padding: 0.75rem 0;
+    padding: 0.75rem 0.35rem;
   }
   .brand-logo {
     gap: 0.45rem;
