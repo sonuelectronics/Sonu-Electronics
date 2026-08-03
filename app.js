@@ -524,13 +524,13 @@ function requestDeleteProduct(productId) {
       <div style="width: 60px; height: 60px; background: rgba(239, 68, 68, 0.15); border: 2px solid #ef4444; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem auto; font-size: 1.8rem; color: #ef4444;">
         <i class="fas fa-trash-alt"></i>
       </div>
-      <h2 style="font-size: 1.4rem; margin-bottom: 0.5rem; color: #fff;">Confirm Product Deletion</h2>
+      <h2 style="font-size: 1.4rem; margin-bottom: 0.5rem; color: var(--text-main);">Confirm Product Deletion</h2>
       <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">
         Are you sure you want to remove <br><strong style="color: var(--accent-gold);">${item.name}</strong> from catalog?
       </p>
 
       <form onsubmit="confirmDeleteProduct(event, ${item.id})" style="max-width: 320px; margin: 0 auto;">
-        <input type="password" id="delete-pin-input" required maxlength="10" placeholder="Enter Admin PIN" style="width: 100%; padding: 0.85rem; background: #070c1a; border: 1px solid var(--border-light); border-radius: var(--radius-md); color: #fff; text-align: center; font-size: 1.2rem; letter-spacing: 4px; outline: none; margin-bottom: 1rem;">
+        <input type="password" id="delete-pin-input" required maxlength="10" placeholder="Enter Admin PIN" style="width: 100%; padding: 0.85rem; background: var(--bg-card-hover); border: 1px solid var(--border-light); border-radius: var(--radius-md); color: var(--text-main); text-align: center; font-size: 1.2rem; letter-spacing: 4px; outline: none; margin-bottom: 1rem;">
         
         <div id="delete-pin-error" style="color: #ef4444; font-size: 0.85rem; margin-bottom: 1rem; display: none;"></div>
 
@@ -647,35 +647,6 @@ function closeModal() {
       });
     } catch(err) {}
   }
-
-  // Firebase Firestore Listener (Syncs all devices live!)
-  if (firestoreDb) {
-    try {
-      firestoreDb.collection("products").onSnapshot((snapshot) => {
-        snapshot.docChanges().forEach((change) => {
-          const itemData = change.doc.data();
-          if (change.type === "added" || change.type === "modified") {
-            if (!PRODUCTS.some(p => p.id === itemData.id)) {
-              PRODUCTS.unshift(itemData);
-            } else {
-              const idx = PRODUCTS.findIndex(p => p.id === itemData.id);
-              if (idx !== -1) PRODUCTS[idx] = itemData;
-            }
-            renderProducts();
-          }
-          if (change.type === "removed") {
-            const idx = PRODUCTS.findIndex(p => p.id === itemData.id);
-            if (idx !== -1) {
-              PRODUCTS.splice(idx, 1);
-              renderProducts();
-            }
-          }
-        });
-      }, (err) => {
-        // Silently ignore if Firestore API is disabled in console
-      });
-    } catch(err) {}
-  }
 })();
 
 // Admin Security PIN (Default: 9631)
@@ -695,13 +666,13 @@ function openAddProductModal() {
       <div style="width: 60px; height: 60px; background: rgba(251, 191, 36, 0.15); border: 2px solid var(--accent-gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem auto; font-size: 1.8rem; color: var(--accent-gold);">
         <i class="fas fa-user-lock"></i>
       </div>
-      <h2 style="font-size: 1.5rem; margin-bottom: 0.5rem; color: #fff;">Proprietor Admin Access</h2>
+      <h2 style="font-size: 1.5rem; margin-bottom: 0.5rem; color: var(--text-main);">Proprietor Admin Access</h2>
       <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">
         Enter your 4-digit Admin Security PIN to add new products to Sonu Electronics.
       </p>
 
       <form onsubmit="verifyAdminPin(event)" style="max-width: 320px; margin: 0 auto;">
-        <input type="password" id="admin-pin-input" required maxlength="10" placeholder="Enter Admin PIN" style="width: 100%; padding: 0.85rem; background: #070c1a; border: 1px solid var(--border-light); border-radius: var(--radius-md); color: #fff; text-align: center; font-size: 1.2rem; letter-spacing: 4px; outline: none; margin-bottom: 1rem;">
+        <input type="password" id="admin-pin-input" required maxlength="10" placeholder="Enter Admin PIN" style="width: 100%; padding: 0.85rem; background: var(--bg-card-hover); border: 1px solid var(--border-light); border-radius: var(--radius-md); color: var(--text-main); text-align: center; font-size: 1.2rem; letter-spacing: 4px; outline: none; margin-bottom: 1rem;">
         
         <div id="pin-error-msg" style="color: #ef4444; font-size: 0.85rem; margin-bottom: 1rem; display: none;"></div>
 
@@ -750,13 +721,13 @@ function showAddProductFormUI() {
       <form id="add-product-form" onsubmit="handleNewProductSubmit(event)" style="display: flex; flex-direction: column; gap: 1rem;">
         <div>
           <label style="font-size: 0.85rem; font-weight: 600; color: var(--text-muted); display: block; margin-bottom: 0.3rem;">Product Name *</label>
-          <input type="text" id="new-prod-name" required placeholder="e.g. Goldmedal Curve 16A Socket Plate" style="width: 100%; padding: 0.75rem; background: #070c1a; border: 1px solid var(--border-light); border-radius: var(--radius-sm); color: #fff; outline: none;">
+          <input type="text" id="new-prod-name" required placeholder="e.g. Goldmedal Curve 16A Socket Plate" style="width: 100%; padding: 0.75rem; background: var(--bg-card-hover); border: 1px solid var(--border-light); border-radius: var(--radius-sm); color: var(--text-main); outline: none;">
         </div>
 
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
           <div>
             <label style="font-size: 0.85rem; font-weight: 600; color: var(--text-muted); display: block; margin-bottom: 0.3rem;">Category *</label>
-            <select id="new-prod-category" required style="width: 100%; padding: 0.75rem; background: #070c1a; border: 1px solid var(--border-light); border-radius: var(--radius-sm); color: #fff; outline: none;">
+            <select id="new-prod-category" required style="width: 100%; padding: 0.75rem; background: var(--bg-card-hover); border: 1px solid var(--border-light); border-radius: var(--radius-sm); color: var(--text-main); outline: none;">
               <option value="wires">Wires & Cables</option>
               <option value="switches">Modular Switches & Boards</option>
               <option value="fans">Fans</option>
@@ -769,33 +740,33 @@ function showAddProductFormUI() {
 
           <div>
             <label style="font-size: 0.85rem; font-weight: 600; color: var(--text-muted); display: block; margin-bottom: 0.3rem;">Brand / Badge *</label>
-            <input type="text" id="new-prod-badge" required placeholder="e.g. Goldmedal, RR Signature, Havells" style="width: 100%; padding: 0.75rem; background: #070c1a; border: 1px solid var(--border-light); border-radius: var(--radius-sm); color: #fff; outline: none;">
+            <input type="text" id="new-prod-badge" required placeholder="e.g. Goldmedal, RR Signature, Havells" style="width: 100%; padding: 0.75rem; background: var(--bg-card-hover); border: 1px solid var(--border-light); border-radius: var(--radius-sm); color: var(--text-main); outline: none;">
           </div>
         </div>
 
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
           <div>
             <label style="font-size: 0.85rem; font-weight: 600; color: var(--text-muted); display: block; margin-bottom: 0.3rem;">Price (₹) *</label>
-            <input type="number" id="new-prod-price" required placeholder="e.g. 1250" min="1" style="width: 100%; padding: 0.75rem; background: #070c1a; border: 1px solid var(--border-light); border-radius: var(--radius-sm); color: #fff; outline: none;">
+            <input type="number" id="new-prod-price" required placeholder="e.g. 1250" min="1" style="width: 100%; padding: 0.75rem; background: var(--bg-card-hover); border: 1px solid var(--border-light); border-radius: var(--radius-sm); color: var(--text-main); outline: none;">
           </div>
 
           <div>
             <label style="font-size: 0.85rem; font-weight: 600; color: var(--text-muted); display: block; margin-bottom: 0.3rem;">Unit / Quantity Note</label>
-            <input type="text" id="new-prod-unit" placeholder="e.g. per piece, per roll (90m)" defaultValue="per unit" style="width: 100%; padding: 0.75rem; background: #070c1a; border: 1px solid var(--border-light); border-radius: var(--radius-sm); color: #fff; outline: none;">
+            <input type="text" id="new-prod-unit" placeholder="e.g. per piece, per roll (90m)" defaultValue="per unit" style="width: 100%; padding: 0.75rem; background: var(--bg-card-hover); border: 1px solid var(--border-light); border-radius: var(--radius-sm); color: var(--text-main); outline: none;">
           </div>
         </div>
 
         <div>
           <label style="font-size: 0.85rem; font-weight: 600; color: var(--text-muted); display: block; margin-bottom: 0.3rem;">Product Image (Upload Photo or Paste Image Link)</label>
           <div style="display: flex; gap: 1rem; align-items: center;">
-            <label style="flex: 1; padding: 0.75rem; background: #070c1a; border: 1px dashed var(--accent-gold); border-radius: var(--radius-sm); color: var(--accent-gold); text-align: center; cursor: pointer; font-size: 0.85rem;">
+            <label style="flex: 1; padding: 0.75rem; background: var(--bg-card-hover); border: 1px dashed var(--accent-gold); border-radius: var(--radius-sm); color: var(--accent-gold); text-align: center; cursor: pointer; font-size: 0.85rem;">
               <i class="fas fa-camera" style="margin-right: 0.4rem;"></i> Upload Photo from Device
               <input type="file" id="new-prod-file" accept="image/*" onchange="handleImageFileSelect(this)" style="display: none;">
             </label>
             <span style="color: var(--text-muted); font-size: 0.8rem;">OR</span>
-            <input type="text" id="new-prod-img-url" placeholder="Image URL / path..." style="flex: 1; padding: 0.75rem; background: #070c1a; border: 1px solid var(--border-light); border-radius: var(--radius-sm); color: #fff; outline: none; font-size: 0.85rem;">
+            <input type="text" id="new-prod-img-url" placeholder="Image URL / path..." style="flex: 1; padding: 0.75rem; background: var(--bg-card-hover); border: 1px solid var(--border-light); border-radius: var(--radius-sm); color: var(--text-main); outline: none; font-size: 0.85rem;">
           </div>
-          <div id="image-preview-box" style="margin-top: 0.5rem; display: none; align-items: center; gap: 0.75rem; background: #070c1a; padding: 0.5rem; border-radius: var(--radius-sm);">
+          <div id="image-preview-box" style="margin-top: 0.5rem; display: none; align-items: center; gap: 0.75rem; background: var(--bg-card-hover); padding: 0.5rem; border-radius: var(--radius-sm);">
             <img id="image-preview-img" src="" alt="Preview" style="width: 50px; height: 50px; object-fit: cover; border-radius: 4px;">
             <span style="font-size: 0.8rem; color: var(--accent-gold);"><i class="fas fa-check-circle"></i> Photo Ready!</span>
           </div>
@@ -803,7 +774,7 @@ function showAddProductFormUI() {
 
         <div>
           <label style="font-size: 0.85rem; font-weight: 600; color: var(--text-muted); display: block; margin-bottom: 0.3rem;">Product Specifications & Description *</label>
-          <textarea id="new-prod-specs" required rows="3" placeholder="e.g. 100% Electrolytic Copper, Fire Retardant insulation with 2 years warranty..." style="width: 100%; padding: 0.75rem; background: #070c1a; border: 1px solid var(--border-light); border-radius: var(--radius-sm); color: #fff; outline: none; font-family: inherit;"></textarea>
+          <textarea id="new-prod-specs" required rows="3" placeholder="e.g. 100% Electrolytic Copper, Fire Retardant insulation with 2 years warranty..." style="width: 100%; padding: 0.75rem; background: var(--bg-card-hover); border: 1px solid var(--border-light); border-radius: var(--radius-sm); color: var(--text-main); outline: none; font-family: inherit;"></textarea>
         </div>
 
         <div style="display: flex; gap: 1rem; margin-top: 0.5rem;">
