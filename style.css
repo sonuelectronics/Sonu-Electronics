@@ -283,13 +283,43 @@ body {
   justify-content: center;
 }
 
+/* Mobile Navigation Dropdown & Overlay Backdrop */
+.mobile-nav-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 998;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.mobile-nav-backdrop.open {
+  opacity: 1;
+  visibility: visible;
+}
+
 .mobile-menu-toggle {
   display: none;
-  background: none;
-  border: none;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-light);
   color: var(--text-main);
-  font-size: 1.5rem;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-md);
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
   cursor: pointer;
+  transition: var(--transition);
+}
+.mobile-menu-toggle:hover, .mobile-menu-toggle.active {
+  background: rgba(56, 189, 248, 0.15);
+  border-color: var(--primary);
+  color: var(--primary);
 }
 
 /* Hero Section */
@@ -1239,48 +1269,203 @@ body {
 
 @media (max-width: 768px) {
   .container {
-    padding: 0 1.25rem;
+    padding: 0 1rem;
+  }
+
+  /* Top Bar Announcement */
+  .top-bar {
+    padding: 0.5rem 0;
   }
   .top-bar-content {
+    display: flex;
     justify-content: center;
     text-align: center;
     flex-wrap: wrap;
-    gap: 0.5rem;
+    gap: 0.4rem 0.8rem;
   }
-  .top-bar-info {
-    font-size: 0.75rem;
+  .top-bar-item {
+    font-size: 0.78rem;
+  }
+
+  /* Main Navigation Header */
+  .header {
+    margin-top: 0.25rem;
   }
   .navbar {
-    padding: 0.75rem 0;
+    padding: 0.95rem 0;
+    position: relative;
   }
   .brand-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    flex-shrink: 1;
+    min-width: 0;
+    text-decoration: none;
+  }
+  .brand-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: var(--radius-md);
+    font-size: 1.25rem;
+    flex-shrink: 0;
+  }
+  .brand-text {
+    min-width: 0;
+  }
+  .brand-text h1 {
+    font-size: 1.1rem;
+    font-weight: 800;
+    line-height: 1.15;
+    white-space: nowrap;
+    letter-spacing: -0.3px;
+  }
+  .brand-text p {
+    font-size: 0.65rem;
+    color: var(--accent-gold);
+    font-weight: 600;
+    white-space: nowrap;
+    text-transform: uppercase;
+    margin-top: 2px;
+  }
+
+  /* Header Action Buttons Cluster */
+  .header-actions {
+    display: flex;
+    align-items: center;
     gap: 0.5rem;
     flex-shrink: 0;
   }
-  .brand-icon {
-    width: 36px;
-    height: 36px;
-    font-size: 1rem;
-    flex-shrink: 0;
+
+  .cart-btn-trigger,
+  #header-admin-btn,
+  .mobile-menu-toggle {
+    height: 42px;
+    min-width: 42px;
+    padding: 0 0.7rem;
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid var(--border-light);
+    color: var(--text-main);
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: var(--transition);
   }
-  .brand-text h1 {
-    font-size: 1.05rem;
-    font-weight: 800;
-    white-space: nowrap;
+
+  #header-admin-btn {
+    background: rgba(251, 191, 36, 0.12);
+    border-color: rgba(251, 191, 36, 0.3);
+    color: var(--accent-gold);
   }
-  .brand-text p {
-    font-size: 0.62rem;
-  }
-  .nav-links {
+
+  /* Hide wide button text on mobile for maximum header space */
+  #header-admin-btn .btn-text-full,
+  #header-admin-btn .btn-text-admin {
     display: none;
   }
-  .mobile-menu-toggle {
-    display: block;
-    font-size: 1.2rem;
-    padding: 0.3rem 0.4rem;
+  #cart-trigger span:not(.cart-badge) {
+    display: none;
   }
+
+  .cart-badge {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    width: 18px;
+    height: 18px;
+    font-size: 0.68rem;
+    font-weight: 800;
+    background: var(--accent-gold);
+    color: #000;
+    border-radius: 50%;
+  }
+
   #header-call-btn {
     display: none;
+  }
+
+  /* Mobile Dropdown Drawer Navigation Attached to Header */
+  .nav-links {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    width: 100%;
+    background: #0f172a;
+    border-bottom: 2px solid var(--border-glow);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.85);
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.5rem;
+    list-style: none;
+    z-index: 999;
+
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
+  }
+  .nav-links.open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+  .nav-links li {
+    width: 100%;
+  }
+  .nav-link {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 0.75rem 1rem;
+    border-radius: var(--radius-md);
+    color: var(--text-main);
+    font-weight: 600;
+    font-size: 0.95rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-light);
+    transition: var(--transition);
+  }
+  .nav-link:hover, .nav-link.active {
+    background: rgba(56, 189, 248, 0.15);
+    border-color: var(--primary);
+    color: var(--primary);
+  }
+  .nav-link.active::after {
+    display: none;
+  }
+  .nav-icon-mobile {
+    display: inline-block;
+    width: 20px;
+    text-align: center;
+    color: var(--primary);
+    font-size: 1rem;
+  }
+  .mobile-menu-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    margin-top: 0.6rem;
+    padding-top: 0.8rem;
+    border-top: 1px solid var(--border-light);
+  }
+  .btn-sm {
+    padding: 0.65rem 1rem;
+    font-size: 0.88rem;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .mobile-menu-toggle {
+    display: flex;
+    flex-shrink: 0;
   }
   .footer-grid {
     grid-template-columns: 1fr;
@@ -1316,43 +1501,50 @@ body {
   }
 }
 
+@media (min-width: 769px) {
+  .nav-icon-mobile {
+    display: none;
+  }
+  .mobile-menu-actions {
+    display: none;
+  }
+  .mobile-nav-backdrop {
+    display: none;
+  }
+}
+
 @media (max-width: 550px) {
   .container {
-    padding: 0 1.25rem;
+    padding: 0 0.85rem;
   }
-  .header-actions {
-    gap: 0.35rem;
-    flex-shrink: 0;
+  .navbar {
+    padding: 0.85rem 0;
   }
-  #header-admin-btn {
-    padding: 0.35rem 0.55rem;
-    font-size: 0.75rem;
-    white-space: nowrap;
+  .brand-logo {
+    gap: 0.55rem;
   }
-  #header-admin-btn span.btn-text-full {
-    display: none;
-  }
-  .cart-btn-trigger {
-    padding: 0.35rem 0.55rem;
-    font-size: 0.75rem;
-    gap: 0.25rem;
-  }
-  #cart-trigger span:not(.cart-badge) {
-    display: none;
-  }
-  .hero-buttons {
-    flex-direction: column;
-    width: 100%;
-  }
-  .hero-buttons .btn {
-    width: 100%;
+  .brand-icon {
+    width: 38px;
+    height: 38px;
+    font-size: 1.15rem;
   }
   .brand-logo .brand-text h1 {
-    font-size: 0.98rem;
+    font-size: 1.02rem;
     letter-spacing: -0.2px;
   }
   .brand-logo .brand-text p {
-    font-size: 0.58rem;
+    font-size: 0.62rem;
+  }
+  .header-actions {
+    gap: 0.4rem;
+  }
+  .cart-btn-trigger,
+  #header-admin-btn,
+  .mobile-menu-toggle {
+    height: 38px;
+    min-width: 38px;
+    padding: 0 0.55rem;
+    font-size: 0.9rem;
   }
   .products-grid {
     grid-template-columns: 1fr;
@@ -1364,11 +1556,56 @@ body {
     font-size: 0.8rem;
     line-height: 1.5;
   }
+  .floating-widget {
+    bottom: 18px;
+    right: 18px;
+    gap: 0.6rem;
+  }
+  .float-btn {
+    width: 46px;
+    height: 46px;
+    font-size: 1.25rem;
+  }
 }
 
-@media (max-width: 380px) {
+@media (max-width: 400px) {
+  .container {
+    padding: 0 0.75rem;
+  }
+  .navbar {
+    padding: 0.75rem 0;
+  }
+  .brand-logo {
+    gap: 0.45rem;
+  }
+  .brand-icon {
+    width: 36px;
+    height: 36px;
+    font-size: 1.05rem;
+  }
   .brand-logo .brand-text h1 {
-    font-size: 0.95rem;
+    font-size: 0.92rem;
+    letter-spacing: -0.2px;
+  }
+  .brand-logo .brand-text p {
+    font-size: 0.58rem;
+  }
+  .header-actions {
+    gap: 0.3rem;
+  }
+  .cart-btn-trigger,
+  #header-admin-btn,
+  .mobile-menu-toggle {
+    height: 36px;
+    min-width: 36px;
+    padding: 0 0.45rem;
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 350px) {
+  .brand-logo .brand-text h1 {
+    font-size: 0.85rem;
   }
   .brand-logo .brand-text p {
     display: none;

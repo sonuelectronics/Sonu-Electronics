@@ -39,6 +39,9 @@
     </div>
   </div>
 
+  <!-- Mobile Nav Overlay Backdrop -->
+  <div class="mobile-nav-backdrop" id="mobile-backdrop"></div>
+
   <!-- Main Navigation Header -->
   <header class="header" id="main-header">
     <div class="container navbar">
@@ -53,15 +56,23 @@
       </a>
 
       <ul class="nav-links" id="nav-links">
-        <li><a href="#hero" class="nav-link active" id="nav-home">Home</a></li>
-        <li><a href="#products" class="nav-link" id="nav-products">Products</a></li>
-        <li><a href="#proprietor" class="nav-link" id="nav-about">About Us</a></li>
-        <li><a href="#contact" class="nav-link" id="nav-contact">Contact & Location</a></li>
+        <li><a href="#hero" class="nav-link active" id="nav-home"><i class="fas fa-home nav-icon-mobile"></i> Home</a></li>
+        <li><a href="#products" class="nav-link" id="nav-products"><i class="fas fa-th-large nav-icon-mobile"></i> Products</a></li>
+        <li><a href="#proprietor" class="nav-link" id="nav-about"><i class="fas fa-user-shield nav-icon-mobile"></i> About Us</a></li>
+        <li><a href="#contact" class="nav-link" id="nav-contact"><i class="fas fa-map-marker-alt nav-icon-mobile"></i> Contact & Location</a></li>
+        <li class="mobile-menu-actions">
+          <a href="tel:9631985165" class="btn btn-primary btn-sm">
+            <i class="fas fa-phone-alt"></i> Call +91 9631985165
+          </a>
+          <a href="https://wa.me/919631985165?text=Hello%20Tanveer%20Alam,%20I%20want%20to%20inquire%20about%20electrical%20products" target="_blank" class="btn btn-whatsapp btn-sm">
+            <i class="fab fa-whatsapp"></i> WhatsApp Order
+          </a>
+        </li>
       </ul>
 
       <div class="header-actions">
         <button class="cart-btn-trigger" onclick="openAddProductModal()" id="header-admin-btn" style="background: rgba(251, 191, 36, 0.15); border-color: var(--accent-gold); color: var(--accent-gold);" title="Proprietor Only - Add Product">
-          <i class="fas fa-plus-circle"></i> + Add <span class="btn-text-full">Product</span>
+          <i class="fas fa-plus-circle"></i> <span class="btn-text-admin">+ Add <span class="btn-text-full">Product</span></span>
         </button>
 
         <button class="cart-btn-trigger" id="cart-trigger" title="View Shopping Cart">
