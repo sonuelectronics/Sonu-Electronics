@@ -13,14 +13,12 @@ const firebaseConfig = {
 };
 
 let firebaseDb = null;
-let firestoreDb = null;
 
 if (typeof firebase !== "undefined") {
   try {
     firebase.initializeApp(firebaseConfig);
     // Only attempt DB if initialized
     try { if (firebase.database) firebaseDb = firebase.database(); } catch(e) {}
-    try { if (firebase.firestore) firestoreDb = firebase.firestore(); } catch(e) {}
   } catch (err) {
     // Graceful offline fallback
   }
@@ -897,12 +895,9 @@ function handleNewProductSubmit(e) {
     localStorage.setItem("sonu_custom_products", JSON.stringify(saved));
   } catch(err) { console.error(err); }
 
-  // Sync new product across all customer devices live via Firebase
+  // Sync new product across all customer devices live via Firebase Realtime Database
   if (firebaseDb) {
     try { firebaseDb.ref("products/" + newProduct.id).set(newProduct); } catch(e) { console.error(e); }
-  }
-  if (firestoreDb) {
-    try { firestoreDb.collection("products").doc(String(newProduct.id)).set(newProduct); } catch(e) { console.error(e); }
   }
 
   uploadedBase64Image = ""; // Reset
