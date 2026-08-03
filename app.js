@@ -308,7 +308,9 @@ function setupEventListeners() {
 
     const allNavLinks = navLinks.querySelectorAll("a");
     allNavLinks.forEach(link => {
-      link.addEventListener("click", closeMobileMenu);
+      link.addEventListener("click", () => {
+        closeMobileMenu();
+      });
     });
 
     document.addEventListener("keydown", (e) => {

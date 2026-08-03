@@ -47,6 +47,10 @@ html {
   overflow-x: hidden;
 }
 
+section {
+  scroll-margin-top: 90px;
+}
+
 body {
   min-height: 100vh;
   display: flex;
@@ -172,7 +176,7 @@ body {
 .header {
   position: sticky;
   top: 0;
-  z-index: 100;
+  z-index: 1000;
   background: var(--bg-glass);
   backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--border-light);
@@ -291,7 +295,7 @@ body {
   width: 100vw;
   height: 100vh;
   background: transparent;
-  z-index: 998;
+  z-index: 990;
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
@@ -1405,7 +1409,7 @@ body {
     align-items: stretch;
     gap: 0.5rem;
     list-style: none;
-    z-index: 999;
+    z-index: 1001;
 
     opacity: 0;
     visibility: hidden;
