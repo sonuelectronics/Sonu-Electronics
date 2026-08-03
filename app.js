@@ -178,8 +178,43 @@ let cart = [];
 let activeCategory = "all";
 let searchQuery = "";
 
+// Theme Switcher Logic (Light Mode Default with Dark Mode Switch)
+function initTheme() {
+  const savedTheme = localStorage.getItem("sonu_theme") || "light";
+  applyTheme(savedTheme);
+}
+
+function applyTheme(theme) {
+  if (theme === "dark") {
+    document.documentElement.setAttribute("data-theme", "dark");
+  } else {
+    document.documentElement.removeAttribute("data-theme");
+  }
+  localStorage.setItem("sonu_theme", theme);
+  updateThemeIcon(theme);
+}
+
+function updateThemeIcon(theme) {
+  const themeBtn = document.getElementById("theme-toggle");
+  if (!themeBtn) return;
+  if (theme === "dark") {
+    themeBtn.innerHTML = '<i class="fas fa-sun" style="color: #fbbf24;"></i>';
+    themeBtn.setAttribute("title", "Switch to Light Mode");
+  } else {
+    themeBtn.innerHTML = '<i class="fas fa-moon" style="color: #0284c7;"></i>';
+    themeBtn.setAttribute("title", "Switch to Dark Mode");
+  }
+}
+
+function toggleTheme() {
+  const currentTheme = document.documentElement.getAttribute("data-theme") === "dark" ? "dark" : "light";
+  const newTheme = currentTheme === "dark" ? "light" : "dark";
+  applyTheme(newTheme);
+}
+
 // DOM Elements
 document.addEventListener("DOMContentLoaded", () => {
+  initTheme();
   renderProducts();
   setupEventListeners();
   updateCartUI();
@@ -258,6 +293,12 @@ function setupEventListeners() {
       searchQuery = e.target.value;
       renderProducts();
     });
+  }
+
+  // Theme Toggle Button
+  const themeToggleBtn = document.getElementById("theme-toggle");
+  if (themeToggleBtn) {
+    themeToggleBtn.addEventListener("click", toggleTheme);
   }
 
   // Cart Drawer toggles
